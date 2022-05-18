@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Cards</title>
+        <style>
+            body { font-family: sans-serif; }
+            label { width: 50px; }
+            img { cursor: pointer; }
+            img:-moz-broken { width: 0; }
+        </style>
+    </head>
+    <body>
+
+        <h1>Cards</h1>
+        <div>
+            <label>From:</label><input id="min-index" value="1001"></input>
+            <label>To:</label><input id="max-index" value="2702"></input>
+            <button onclick="load()">Load</button>
+            <button onclick="clear_imgs()">Clear</button>
+        </div>
+        <hr>
+    </body>
+    <script>
+        const URL = "http://p-img.danmachixi.com/card/full_l/";
+        const URL_THUMBNAIL = "https://p-img.danmachixi.com/card/thumb_s/";
+
+        function load() {
+            let el_Min = document.getElementById("min-index");
+            let el_Max = document.getElementById("max-index");
+
+            load_imgs(
+                parseInt(el_Min.value),
+                parseInt(el_Max.value)
+            );
+        }
+        
+        function clear_imgs() {
+            document.body.innerHTML = document.body.innerHTML.split("<br>")[0] + "<br>";
+        }
+
+        function load_imgs(start, end) {
+            clear_imgs();
+
+            let count = start;
+            let fragment = document.createDocumentFragment();
+
+            while (count <= end) {
+                let img_src = URL + count + ".jpg";
+                let thumb_src = URL_THUMBNAIL + count + ".jpg";
+                
+                let img_new = document.createElement("img");
+                img_new.src = thumb_src;
+                // newImage.src = imgSource;
+                img_new.href = img_src;
+                img_new.onclick = () => window.open(img_src);
+                img_new.title = `${count}.png`;
+
+                fragment.appendChild(img_new);
+                count++;
+            }
+
+            document.body.appendChild(fragment);
+        }
+    </script>
+</html>

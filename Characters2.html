@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Characters</title>
+        <style>
+            body { font-family: sans-serif; }
+            label { width: 50px; }
+            img { max-width: 10vw; cursor: pointer; }
+            img:-moz-broken { width: 0; }
+        </style>
+    </head>
+    <body>
+
+        <h1>Characters</h1>
+        <div>
+            <label>From:</label><input id="min-index" value="1001"></input>
+            <label>To:</label><input id="max-index" value="2692"></input>
+            <button onclick="load()">Load</button>
+            <button onclick="clear_imgs()">Clear</button>
+        </div>
+        <hr>
+    </body>
+    <script>
+        const URL = "https://p-img.danmachixi.com/card/mypage_n/";
+
+        function load() {
+            let el_min = document.getElementById("min-index");
+            let el_max = document.getElementById("max-index");
+
+            load_imgs(
+                parseInt(el_min.value),
+                parseInt(el_max.value)
+            );
+        }
+        
+        function clear_imgs() {
+            document.body.innerHTML = document.body.innerHTML.split("<br>")[0] + "<br>";
+        }
+
+        function load_imgs(start, end) {
+            clear_imgs();
+
+            let count = start;
+            let fragment = document.createDocumentFragment();
+
+            while (count <= end) {
+                let img_src = URL + count + ".png";
+                
+                let img_new = document.createElement("img");
+                img_new.src = img_src;
+                img_new.href = img_src;
+                img_new.onclick = () => window.open(img_src);
+                img_new.title = `${count}.png`;
+
+                fragment.appendChild(img_new);
+
+                count++;
+            }
+
+            document.body.appendChild(fragment);
+        }
+    </script>
+</html>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Characters</title>
+        <style>
+            body { font-family: sans-serif; }
+        </style>
+    </head>
+    <body>
+
+        <h1>Characters</h1>
+    </body>
+    <script>
+        const URL = "https://p-img.danmachixi.com/common/cmn_navi/";
+
+
+        window.onload = () => {
+            let count1 = 1;
+
+            while (count1 <= 10) {
+                let count2 = 1;
+                while (count2 <= 5) {
+                    let img_src = URL + count1 + "/" + count2 + ".png";
+                    
+                    let img_new = document.createElement("img");
+                    img_new.src = img_src;
+                    img_new.onclick = () => window.open(img_src);
+                    img_new.style["cursor"] = "pointer";
+
+                    document.body.appendChild(img_new);
+                    count2++;
+                }
+                document.body.appendChild(document.createElement("hr"));
+                count1++;
+            }
+        }
+    </script>
+</html>
