@@ -16,4 +16,6 @@ HTML pages for displaying character cards from the game DanNachi - Cross Istoria
 
 # Copyright
 
-I do not own any media displayed by these scripts. All media is fetched from the original game servers.
+I do not own any media displayed by these scripts. All media is fetched from the original game servers. 
+
+**I am not affiliated with the developers of the game. This is a hobby project created by looking at network requests.**
